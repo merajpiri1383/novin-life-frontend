@@ -10,7 +10,7 @@ const Menu = dynamic(() => import("@/components/header/menu"),{ssr : true});
 
 const Header: FC = () => {
     return (
-        <div className="[direction:rtl] px-[80px] py-[40px]">
+        <div className="[direction:rtl] px-[80px] pb-[20px] pt-[40px]">
             <div className="flex items-center justify-between">
                 <div className="flex items-center justify-center">
                     <div className="size-[104px] relative">

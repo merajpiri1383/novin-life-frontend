@@ -1,26 +1,33 @@
 import { FC } from "react";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import localFont from "next/font/local";
 import "@/app/globals.css";
-const Header = dynamic(() => import("@/components/header"),{ssr : true});
+const Header = dynamic(() => import("@/components/header"), { ssr: true });
 
 
-export const metadata : Metadata = {
-    title : "Novin Life",
+const IranSansFont = localFont({
+    src: "./fonts/IRANSansWeb(FaNum).ttf",
+    display : "swap",
+    variable : "--iran-sans-font"
+})
+
+export const metadata: Metadata = {
+    title: "Novin Life",
 }
 
 
 interface RootLayoutProps {
-    children : React.ReactNode,
+    children: React.ReactNode,
 }
 
-const RootLayout : FC<RootLayoutProps> = ({ children }) => {
+const RootLayout: FC<RootLayoutProps> = ({ children }) => {
     return (
         <html>
-            <body>
+            <body className={IranSansFont.variable}>
                 <Header />
                 {children}
             </body>
         </html>
     )
-};export default RootLayout;
+}; export default RootLayout;
