@@ -1,12 +1,13 @@
 import dynamic from "next/dynamic";
 import "@/app/components/style.css";
 
-const Slider = dynamic(() => import("@/app/components/slider"),{ssr : true});
-const Stats = dynamic(() => import("@/app/components/stats"),{ssr : true});
-const MostSell = dynamic(() => import("@/app/components/mostSell"),{ssr : true});
-const SpecialSell = dynamic(() => import("@/app/components/specialSell"),{ssr : true});
-const MostVisit = dynamic(() => import("@/app/components/mostVisit"),{ssr : true});
-const BannerGift = dynamic(() => import("@/app/components/bannerGift"),{ssr : true});
+const Slider = dynamic(() => import("@/app/components/slider"), { ssr: true });
+const Stats = dynamic(() => import("@/app/components/stats"), { ssr: true });
+const MostSell = dynamic(() => import("@/app/components/mostSell"), { ssr: true });
+const SpecialSell = dynamic(() => import("@/app/components/specialSell"), { ssr: true });
+const MostVisit = dynamic(() => import("@/app/components/mostVisit"), { ssr: true });
+const BannerGift = dynamic(() => import("@/app/components/bannerGift"), { ssr: true });
+const Blogs = dynamic(() => import("@/app/components/blogs"), { ssr: true });
 
 const Page = () => {
     return (
@@ -17,6 +18,7 @@ const Page = () => {
             <SpecialSell />
             <MostVisit />
             <BannerGift />
+            <Blogs />
         </>
     )
-};export default Page;
+}; export default Page;
