@@ -9,10 +9,10 @@ import { FC } from "react";
 
 
 
-export const Product : FC<{index : number}> = ({ index }) => {
+export const Product : FC<{index : number , classname ?: string,}> = ({ index , classname }) => {
     return (
         <Link href={"/product/" + index} 
-            className="border-[1px] border-[#CBCBCB] rounded-[16px] p-[15px] cursor-pointer">
+            className={`border-[1px] border-[#CBCBCB] rounded-[16px] p-[15px] cursor-pointer ` + classname}>
             <div className="w-full h-[245px] relative bg-[#A1A1A1] rounded-[8px]">
                 <Image 
                     src={HolderImage}

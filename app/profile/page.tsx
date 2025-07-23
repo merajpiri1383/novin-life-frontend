@@ -1,16 +1,19 @@
 import dynamic from "next/dynamic";
 
 const UserInfo = dynamic(() => import("@/app/profile/components/userInfo"),{ssr : true});
+const Content = dynamic(() => import("@/app/profile/components/content"),{ssr : true});
 
 const Page = () => {
     return (
         <div className="px-[80px] py-[30px] [direction:rtl]">
             <p className="text-[#3D3D3D] font-bold text-[32px]">پروفایل</p>
-            <div className="grid grid-cols-3 my-3 items-start">
+            <div className="grid grid-cols-3 my-3 items-start gap-[25px]">
                 <div className="col-span-1">
                     <UserInfo />
                 </div>
-                <div className="col-span-2"></div>
+                <div className="col-span-2">
+                    <Content />
+                </div>
             </div>
         </div>
     )
