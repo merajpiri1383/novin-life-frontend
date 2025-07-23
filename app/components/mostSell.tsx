@@ -3,12 +3,15 @@ import HolderImage from "@/public/dev/holder.svg";
 import MedalStarIcon from "@/components/icons/home/medalStar";
 import HeartIcon from "@/components/icons/home/heart";
 import StarIcon from "@/components/icons/home/star";
+import Link from "next/link";
+import { FC } from "react";
 
 
 
-const Product = () => {
+const Product : FC<{ index : number }> = ({ index }) => {
     return (
-        <div className="border-[1px] border-[#CBCBCB] rounded-[16px] p-[15px]">
+        <Link href={"/product/" + index}
+            className="border-[1px] border-[#CBCBCB] rounded-[16px] p-[15px]">
             <div className="w-full h-[245px] relative bg-[#A1A1A1] rounded-[8px]">
                 <Image 
                     src={HolderImage}
@@ -37,7 +40,7 @@ const Product = () => {
                 </div>
                 <p className="text-[#3D3D3D] font-semibold text-[18px]">۱۵۰,۰۰۰ تومان</p>
             </div>
-        </div>
+        </Link>
     )
 }
 
@@ -46,7 +49,7 @@ const MostSell = () => {
     const items = [1,2,3,4,5,6,7,8];
 
     return (
-        <div className="my-[30px] mx-[80px] [direction:rtl]">
+        <div className="m-[80px] [direction:rtl]">
             <div className="flex items-center justify-between">
                 <div className="flex items-center justify-center gap-[8px]">
                     <div className="size-[40px]">
@@ -61,7 +64,9 @@ const MostSell = () => {
                 {
                     items.map((product) => {
                         return (
-                            <Product key={product} />
+                            <Product 
+                                index={product}
+                                key={product} />
                         )
                     })
                 }

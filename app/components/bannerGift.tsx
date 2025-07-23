@@ -6,7 +6,7 @@ import MagicStar from "@/components/icons/home/magitStar";
 
 const BannerGift = () => {
     return (
-        <div className="grid grid-cols-2 items-center [direction:rtl] my-[30px] mx-[80px] gap-[25px]">
+        <div className="grid grid-cols-2 items-center [direction:rtl] m-[80px] gap-[25px]">
             <div className="col-span-1 flex items-center justify-between bg-[#D5E9F8] rounded-[16px]">
                 <div className="m-[25px]">
                     <p className="text-[#3D3D3D] font-bold text-[24px]">محصولات مناسب آقایان</p>

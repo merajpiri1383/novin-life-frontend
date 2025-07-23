@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import "@/app/globals.css";
 const Header = dynamic(() => import("@/components/header"), { ssr: true });
+const Footer = dynamic(() => import("@/components/footer"),{ssr : true});
 
 
 const IranSansFont = localFont({
@@ -27,6 +28,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
             <body className={IranSansFont.variable}>
                 <Header />
                 {children}
+                <Footer />
             </body>
         </html>
     )

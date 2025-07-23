@@ -9,7 +9,7 @@ import DisocuntImage from "@/public/discount.svg";
 
 const SpecialSell = () => {
     return (
-        <div className="my-[30px] mx-[80px] [direction:rtl]">
+        <div className="m-[80px] [direction:rtl]">
             <div className="flex items-center justify-between">
                 <div className="flex items-center justify-center gap-[8px]">
                     <div className="size-[40px]">

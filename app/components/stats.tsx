@@ -2,7 +2,7 @@ import VerticalLine from "@/components/icons/home/verticalLine";
 
 const Stats = () => {
     return (
-        <div className="flex items-center justify-center [direction:rtl] gap-20 my-10">
+        <div className="flex items-center justify-center [direction:rtl] gap-20 m-[80px]">
             <div>
                 <p className="text-center text-[#3D3D3D] text-[64px]">+۵</p>
                 <p className="text-center text-[#3D3D3D] text-[24px]">سال سابقه</p>

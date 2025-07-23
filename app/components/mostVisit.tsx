@@ -4,12 +4,15 @@ import MedalStarIcon from "@/components/icons/home/medalStar";
 import HeartIcon from "@/components/icons/home/heart";
 import StarIcon from "@/components/icons/home/star";
 import AirpodIcon from "@/components/icons/home/airbod";
+import Link from "next/link";
+import { FC } from "react";
 
 
 
-const Product = () => {
+export const Product : FC<{index : number}> = ({ index }) => {
     return (
-        <div className="border-[1px] border-[#CBCBCB] rounded-[16px] p-[15px]">
+        <Link href={"/product/" + index} 
+            className="border-[1px] border-[#CBCBCB] rounded-[16px] p-[15px] cursor-pointer">
             <div className="w-full h-[245px] relative bg-[#A1A1A1] rounded-[8px]">
                 <Image 
                     src={HolderImage}
@@ -38,7 +41,7 @@ const Product = () => {
                 </div>
                 <p className="text-[#3D3D3D] font-semibold text-[18px]">۱۵۰,۰۰۰ تومان</p>
             </div>
-        </div>
+        </Link>
     )
 }
 
@@ -62,7 +65,7 @@ const MostVisit = () => {
                 {
                     items.map((product) => {
                         return (
-                            <Product key={product} />
+                            <Product index={product} key={product} />
                         )
                     })
                 }
