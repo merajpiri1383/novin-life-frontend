@@ -5,7 +5,6 @@ import MapImage from "@/public/dev/map.png";
 import ArrowLeftIcon from "@/components/icons/profile/arrowLeft";
 import LocationIcon from "@/components/icons/profile/locationIcon";
 import CallIcon from "@/components/icons/profile/call";
-import MessagesIcon from "@/components/icons/profile/messages";
 import UserIcon from "@/components/icons/header/user";
 import SmsIcon from "@/components/icons/footer/sms";
 

@@ -24,7 +24,7 @@ interface RootLayoutProps {
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
     return (
-        <html>
+        <html className="hide-scrollbar">
             <body className={IranSansFont.variable}>
                 <Header />
                 {children}

@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "typeRoots": ["./types","./node_modules/@types"],
         "target": "ES2017",
         "lib": [
             "dom",
@@ -33,6 +34,9 @@
             ],
             "@/public/*": [
                 "./public/*"
+            ],
+            "@/hooks/*" : [
+                "./hooks/*",
             ]
         },
         "plugins": [

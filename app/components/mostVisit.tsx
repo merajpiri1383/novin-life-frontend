@@ -1,6 +1,5 @@
 import Image from "next/image";
 import HolderImage from "@/public/dev/holder.svg";
-import MedalStarIcon from "@/components/icons/home/medalStar";
 import HeartIcon from "@/components/icons/home/heart";
 import StarIcon from "@/components/icons/home/star";
 import AirpodIcon from "@/components/icons/home/airbod";

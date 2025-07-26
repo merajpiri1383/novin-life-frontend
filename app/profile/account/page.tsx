@@ -1,6 +1,6 @@
 "use client"
 import dynamic from "next/dynamic";
-const IranCity = require("iran-city");
+import IranCity from "iran-city";
 const DropDownInput = dynamic(() => import("@/app/profile/components/dropdownInput"), { ssr: false });
 const LeafletMap = dynamic(() => import("@/app/profile/components/leafletMap"),{ssr : false});
 import PhoneIcon from "@/components/icons/profile/phone";
@@ -85,7 +85,7 @@ const Page = () => {
                         icon={<div className="size-[16px]"><ArrowDownIcon /></div>}
                         value={currentProvince}
                         setValue={setProvince}
-                        items={AllProvince.map((item: any) => item.name)}
+                        items={AllProvince.map((item : {name : string}) => item.name)}
                         classNameDropDown="border border-[#CBCBCB] mt-2
                         rounded-[8px] py-[6px] px-[8px]"
                     />

@@ -4,7 +4,7 @@
 import ArrowDownIcon from "@/components/icons/profile/arrowDown";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-const IranCity = require("iran-city");
+import IranCity from "iran-city";
 
 const LeafletMap = dynamic(() => import("@/app/profile/components/leafletMap"), { ssr: false });
 const DropDownInput = dynamic(() => import("@/app/profile/components/dropdownInput"), { ssr: false });
