@@ -5,6 +5,7 @@ import Logo from "@/public/logo.svg";
 import UserIcon from "@/icons/header/user";
 import BagIcon from "@/icons/header/bag";
 import SearchIcon from "@/icons/header/search";
+import Link from "next/link";
 const Menu = dynamic(() => import("@/components/header/menu"),{ssr : true});
 
 
@@ -39,7 +40,9 @@ const Header: FC = () => {
                 <div className="flex items-center justify-center gap-[16px]">
                     <div className="flex items-center justify-center gap-[16px] bg-[#FFFFFF] 
                     shadow-[0px_0px_20px_1px_rgba(0,0,0,.1)] p-3 rounded-[12px]">
-                        <p className="text-[#3D3D3D] font-bold text-[16px]">ثبت‌نام | ورود</p>
+                        <Link 
+                            href={"/login"}
+                            className="text-[#3D3D3D] font-bold text-[16px]">ثبت‌نام | ورود</Link>
                         <div className="size-[24px] relative">
                             <UserIcon />
                         </div>
