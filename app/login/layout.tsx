@@ -5,7 +5,6 @@ import AuthBgImage1 from "@/public/auth-bg-1.png";
 import AuthBgImage2 from "@/public/auth-bg-2.png";
 import AuthBgImage from "@/public/auth-bg.svg";
 import HomeIcon from "@/icons/cart/home";
-import { Slide } from "react-awesome-reveal";
 interface Props {
     children?: React.ReactNode,
 }

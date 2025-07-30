@@ -13,6 +13,8 @@ const Page = () => {
 
     const [isSuccess, setResult] = useState<boolean>(false);
 
+    setResult(false);
+
     return (
         <div className="mb-[80px] mx-[80px] [direction:rtl]">
             <p className="font-bold text-[32px] text-[#3D3D3D]">نتیجه نهایی سفارش</p>
