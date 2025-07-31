@@ -6,7 +6,7 @@ const LeafletMap = dynamic(() => import("@/app/profile/components/leafletMap"),{
 import PhoneIcon from "@/components/icons/profile/phone";
 import CallIcon from "@/components/icons/profile/call";
 import ArrowDownIcon from "@/components/icons/profile/arrowDown";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type CityType = {
     id: number,
@@ -18,13 +18,15 @@ type CityType = {
 
 const Page = () => {
 
-    const AllProvince = IranCity.allProvinces();
+    const AllProvince = useMemo(() => IranCity.allProvinces(),[]);
     const [currentProvince, setProvince] = useState<string | null>(null);
     const [cities, setCities] = useState<CityType[]>([]);
     const [currentCity, setCity] = useState<string | null>(null);
 
     useEffect(() => {
-        currentProvince && setCities(IranCity.searchByName(currentProvince));
+        if (currentProvince) {
+            setCities(IranCity.searchByName(currentProvince));
+        }
     }, [currentProvince]);
 
     return (

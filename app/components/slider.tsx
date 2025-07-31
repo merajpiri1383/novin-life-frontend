@@ -13,7 +13,7 @@ import RightArrowIcon from "@/components/icons/home/rightArrow";
 
 const SwiperImageSlide = () => {
     return (
-        <div className="relative h-[500px] w-full">
+        <div className="relative my-2 md:my-0 h-[169px] md:h-[500px] w-full">
             <Image 
                 src={SlideImage}
                 alt="slider image"

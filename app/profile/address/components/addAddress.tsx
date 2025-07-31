@@ -3,11 +3,17 @@
 "use client"
 import ArrowDownIcon from "@/components/icons/profile/arrowDown";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import IranCity from "iran-city";
 
 const LeafletMap = dynamic(() => import("@/app/profile/components/leafletMap"), { ssr: false });
 const DropDownInput = dynamic(() => import("@/app/profile/components/dropdownInput"), { ssr: false });
+
+type ProvinceType = {
+    id: number;
+    name: string;
+    slug: string;
+}
 
 type CityType = {
     id: number,
@@ -18,13 +24,15 @@ type CityType = {
 
 const AddAddress = () => {
 
-    const AllProvince = IranCity.allProvinces();
+    const AllProvince = useMemo(() => IranCity.allProvinces(), []);
     const [currentProvince, setProvince] = useState<string | null>(null);
     const [cities, setCities] = useState<CityType[]>([]);
     const [currentCity, setCity] = useState<string | null>(null);
 
     useEffect(() => {
-        currentProvince && setCities(IranCity.searchByName(currentProvince));
+        if (currentProvince) {
+            setCities(IranCity.searchByName(currentProvince));
+        }
     }, [currentProvince]);
 
     return (
@@ -69,7 +77,7 @@ const AddAddress = () => {
                         icon={<div className="size-[16px]"><ArrowDownIcon /></div>}
                         value={currentProvince}
                         setValue={setProvince}
-                        items={AllProvince.map((item: any) => item.name)}
+                        items={AllProvince.map((item: ProvinceType) => item.name)}
                         classNameDropDown="border border-[#CBCBCB] mt-2
                         rounded-[8px] py-[6px] px-[8px]"
                     />

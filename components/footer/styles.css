@@ -1,0 +1,11 @@
+
+
+.grouplink-open {
+    transition: 400ms;
+    height: var(--group-link-height);
+}
+
+.grouplink-close {
+    transition: 400ms;
+    height: 45px;
+}
