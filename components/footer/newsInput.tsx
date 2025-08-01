@@ -5,7 +5,7 @@ const NewsInput = () => {
     return (
         <>
             <p className="mt-6 text-[#FFFFFF] font-bold text-[14px] md:block hidden">خبرنامه نوین لایف</p>
-            <p className="md:block text-[#FFFFFF] font-bold text-[14px] mt-6">خبرنامه</p>
+            <p className="md:block text-[#FFFFFF] font-bold text-[14px] mt-6 md:hidden">خبرنامه</p>
             <div className="border-[1px] rounded-[8px] border-[#EDEDED] md:border-[#868686] 
                         p-[6px] my-2 flex items-center justify-start gap-2">
                 <div className="aspect-square w-[30px] md:block hidden">

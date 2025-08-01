@@ -6,7 +6,7 @@ const LeafletMap = dynamic(() => import("@/app/profile/components/leafletMap"),{
 import PhoneIcon from "@/components/icons/profile/phone";
 import CallIcon from "@/components/icons/profile/call";
 import ArrowDownIcon from "@/components/icons/profile/arrowDown";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 type CityType = {
     id: number,
@@ -15,13 +15,22 @@ type CityType = {
     province_id: number,
 }
 
+type ProvinceType = {
+    id : number,
+    name : string,
+    slug : string,
+}
 
 const Page = () => {
 
-    const AllProvince = useMemo(() => IranCity.allProvinces(),[]);
+    const [allProvinces, setAllProvinces] = useState<ProvinceType[]>([]);
     const [currentProvince, setProvince] = useState<string | null>(null);
     const [cities, setCities] = useState<CityType[]>([]);
     const [currentCity, setCity] = useState<string | null>(null);
+
+    useEffect(() => {
+        setAllProvinces(IranCity.allProvinces());
+    }, []);
 
     useEffect(() => {
         if (currentProvince) {
@@ -87,7 +96,7 @@ const Page = () => {
                         icon={<div className="size-[16px]"><ArrowDownIcon /></div>}
                         value={currentProvince}
                         setValue={setProvince}
-                        items={AllProvince.map((item : {name : string}) => item.name)}
+                        items={allProvinces.map((item : {name : string}) => item.name)}
                         classNameDropDown="border border-[#CBCBCB] mt-2
                         rounded-[8px] py-[6px] px-[8px]"
                     />

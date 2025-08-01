@@ -10,11 +10,11 @@ import InstagramIcon from "@/icons/footer/instagram";
 import NamadImage from "@/public/dev/namad.svg";
 import HomeIcon from "@/icons/footer/home";
 import NoteAddIcon from "@/icons/footer/noteAdd";
-import ShoppingCartIcon from "@/icons/cart/shoppingCart";
 import UserIcon from "@/icons/header/user";
 import ArrowDownCircleIcon from "@/icons/footer/arrowDownCircle";
 import { GroupLinkType } from ".";
 import ShopingCardIcon from "../icons/about/shopingCard";
+import Link from "next/link";
 
 
 const NewsInput = dynamic(() => import("@/components/footer/newsInput"), { ssr: false });
@@ -148,12 +148,12 @@ const FooterMobile: FC<Props> = ({ groupLinks }) => {
             </div>
             <div className="bg-[#0A3C63] p-6 py-3 [direction:rtl] border-t border-white sticky bottom-0 z-[25]">
                 <div className="flex items-center justify-between">
-                    <div>
+                    <Link href={"/"}>
                         <div className="size-[24px] mx-auto mb-2">
                             <HomeIcon color="white" />
                         </div>
                         <p className="text-[#EDEDED] text-[12px] font-regular">خانه</p>
-                    </div>
+                    </Link>
                     <div>
                         <div className="size-[24px] mx-auto mb-2">
                             <NoteAddIcon color="white" />
@@ -166,12 +166,12 @@ const FooterMobile: FC<Props> = ({ groupLinks }) => {
                         </div>
                         <p className="text-[#EDEDED] text-[12px] font-regular">سبد خرید</p>
                     </div>
-                    <div>
+                    <Link href={"/profile"}>
                         <div className="size-[24px] mx-auto mb-2">
                             <UserIcon color="white" />
                         </div>
                         <p className="text-[#EDEDED] text-[12px] font-regular">پروفایل</p>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </>

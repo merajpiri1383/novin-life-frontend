@@ -13,7 +13,7 @@ const Page = () => {
 
     const [isSuccess, setResult] = useState<boolean>(false);
 
-    setResult(false);
+    console.log(setResult);
 
     return (
         <div className="mb-[80px] mx-[80px] [direction:rtl]">

@@ -8,7 +8,8 @@ import TickCircleIcon from "@/components/icons/profile/tickCircle";
 import CloseCircleIcon from "@/components/icons/profile/closeCircle";
 
 
-const Content: FC = () => {
+
+const ProfileDesktop: FC = () => {
 
     const products : number[] = [1,2,3];
 
@@ -118,4 +119,4 @@ const Content: FC = () => {
             </div>
         </div>
     )
-}; export default Content;
+}; export default ProfileDesktop;

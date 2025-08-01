@@ -1,58 +1,60 @@
+'use client';
 import React, { FC, useState } from "react";
 import { Slide } from "react-awesome-reveal";
 
-
 type Props = {
-    className?: string,
-    placeholder?: string,
-    icon?: React.ReactNode,
-    value: string | null,
-    setValue: React.Dispatch<React.SetStateAction<string | null>>,
-    items : any[],
-    classNameDropDown ?: string,
-}
+  className?: string;
+  placeholder?: string;
+  icon?: React.ReactNode;
+  value: string | null;
+  setValue: React.Dispatch<React.SetStateAction<string | null>>;
+  items: string[];
+  classNameDropDown?: string;
+};
 
-const DropDownInput : FC<Props> = ({
-    className,
-    placeholder = "",
-    icon,
-    value,
-    setValue,
-    items,
-    classNameDropDown,
+const DropDownInput: FC<Props> = ({
+  className = "",
+  placeholder = "",
+  icon,
+  value,
+  setValue,
+  items,
+  classNameDropDown = "",
 }) => {
+  const [show, setShow] = useState(false);
 
-    const [show, setShow] = useState<boolean>(false);
-    return (
-        <div className={"cursor-pointer w-full " + className}
-            onClick={() => setShow(!show)}>
-            <p>
-                {
-                    value ? value : placeholder
-                }
-            </p>
-            {icon}
-            {
-                show && <Slide
-                    direction="up"
-                    className="bg-white absolute -left-1 -right-1 -top-1 rounded-[8px] p-2"
-                    duration={300}>
-                        <div className={`h-48 grid grid-cols-1 overflow-y-scroll 
-                            hide-scrollbar gap-4 ` + classNameDropDown}>
-                            {
-                                items.map((item,index) => {
-                                    return (
-                                        <p 
-                                            className="p-2 hover:bg-[#F5F5F5] rounded-[8px]
-                                            transition duration-400"
-                                            onClick={() => setValue(item)}
-                                            key={index}>{item}</p>
-                                    )
-                                })
-                            }
-                        </div>
-                </Slide>
-            }
-        </div>
-    )
-}; export default DropDownInput;
+  return (
+    <div
+      className={`relative cursor-pointer w-full ${className}`}
+      onClick={() => setShow((s) => !s)}
+    >
+      <p>{value ?? placeholder}</p>
+      {icon}
+      {show && (
+        <Slide
+          direction="up"
+          className={`absolute inset-x-0 top-full mt-1 bg-white rounded-lg p-2 shadow-lg ${classNameDropDown}`}
+          duration={300}
+        >
+          <div className="max-h-48 grid grid-cols-1 gap-2 overflow-y-auto hide-scrollbar">
+            {items.map((item, idx) => (
+              <p
+                key={idx}
+                className="p-2 rounded-lg hover:bg-gray-100 transition"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setValue(item);
+                  setShow(false);
+                }}
+              >
+                {item}
+              </p>
+            ))}
+          </div>
+        </Slide>
+      )}
+    </div>
+  );
+};
+
+export default DropDownInput;
