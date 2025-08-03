@@ -9,14 +9,18 @@ import UserIcon from "@/components/icons/header/user";
 import LogoutIcon from "@/components/icons/profile/logout";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import MessageIcon from "@/components/icons/profile/message";
 
 
 const Panel = () => {
 
     const pathname = usePathname();
 
+
     return (
-        <div className=" md:px-[32px] md:py-[24px] md:border-[1px] border-[#EDEDED] rounded-[16px]">
+        <div className={`md:px-[32px] md:py-[24px] md:border-[1px] border-[#EDEDED] rounded-[16px]
+            ${ (pathname === "/profile/account" || pathname === "/profile/history" )
+            && "hidden md:block"}`}>
             <div className="border-[#EDEDED] border-b-[1px] pb-3">
                 <div className="relative rounded-full size-[108px] md:size-[144px] mx-auto">
                     <Image
@@ -73,6 +77,15 @@ const Panel = () => {
                     </div>
                     <p className={`${pathname === "/profile/address" ? "text-[#0B79D1]" : "text-[#3D3D3D]"} 
                     font-regular text-[16px] md:text-[20px]`}>آدرس ها</p>
+                </Link>
+                <Link href={"/profile/review"}
+                    className="flex items-center justify-start pb-3 gap-[8px] 
+                    border-b-[1px] border-[#EDEDED] my-4">
+                    <div className="size-[20px] md:size-[24px]">
+                        <MessageIcon color={pathname === "/profile/review" ? "#0B79D1" : "#3D3D3D"} />
+                    </div>
+                    <p className={`${pathname === "/profile/review" ? "text-[#0B79D1]" : "text-[#3D3D3D]"} 
+                    font-regular text-[16px] md:text-[20px]`}>نظرات من</p>
                 </Link>
                 <Link href={"/profile/account"}
                     className="flex items-center justify-start pb-3 gap-[8px] 

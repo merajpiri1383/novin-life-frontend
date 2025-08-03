@@ -8,13 +8,18 @@ import WhatsAppIcon from "@/icons/footer/whatsapp";
 import TelegramIcon from "@/icons/footer/telegram";
 import InstagramIcon from "@/icons/footer/instagram";
 import NamadImage from "@/public/dev/namad.svg";
-import HomeIcon from "@/icons/footer/home";
+import HomeIconFull from "@/icons/footer/home";
+import HomeIcon from "@/icons/cart/home";
 import NoteAddIcon from "@/icons/footer/noteAdd";
 import UserIcon from "@/icons/header/user";
+import UserFullIcon from "@/icons/footer/userFull";
+import ShopingCartFullIcon from "@/icons/footer/shopingCartFull";
+import NoteAddFullIcon from "@/icons/footer/noteAddFull";
 import ArrowDownCircleIcon from "@/icons/footer/arrowDownCircle";
 import { GroupLinkType } from ".";
-import ShopingCardIcon from "../icons/about/shopingCard";
+import ShopingCardIcon from "@/icons/about/shopingCard";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 
 const NewsInput = dynamic(() => import("@/components/footer/newsInput"), { ssr: false });
@@ -59,6 +64,10 @@ interface Props {
 }
 
 const FooterMobile: FC<Props> = ({ groupLinks }) => {
+
+    const currentPath = usePathname();
+
+    console.log(currentPath);
 
     return (
         <>
@@ -150,25 +159,41 @@ const FooterMobile: FC<Props> = ({ groupLinks }) => {
                 <div className="flex items-center justify-between">
                     <Link href={"/"}>
                         <div className="size-[24px] mx-auto mb-2">
-                            <HomeIcon color="white" />
+                            {
+                                currentPath === "/" ? 
+                                <HomeIconFull color="white" /> : 
+                                <HomeIcon color="white" />
+                            }
                         </div>
                         <p className="text-[#EDEDED] text-[12px] font-regular">خانه</p>
                     </Link>
                     <div>
                         <div className="size-[24px] mx-auto mb-2">
-                            <NoteAddIcon color="white" />
+                            {
+                                currentPath === "/me" ? 
+                                <NoteAddFullIcon color="white" /> : 
+                                <NoteAddIcon color="white" />
+                            }
                         </div>
                         <p className="text-[#EDEDED] text-[12px] font-regular">آپشنال</p>
                     </div>
-                    <div>
+                    <Link href={"/cart"}>
                         <div className="size-[24px] mx-auto mb-2">
-                            <ShopingCardIcon color="white" />
+                            {
+                                currentPath === "/cart" ? 
+                                <ShopingCartFullIcon color="white" /> : 
+                                <ShopingCardIcon color="white" />
+                            }
                         </div>
                         <p className="text-[#EDEDED] text-[12px] font-regular">سبد خرید</p>
-                    </div>
+                    </Link>
                     <Link href={"/profile"}>
                         <div className="size-[24px] mx-auto mb-2">
-                            <UserIcon color="white" />
+                            {
+                                currentPath.startsWith("/profile") ? 
+                                <UserFullIcon color="white" /> : 
+                                <UserIcon color="white" />
+                            }
                         </div>
                         <p className="text-[#EDEDED] text-[12px] font-regular">پروفایل</p>
                     </Link>
