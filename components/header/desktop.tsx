@@ -47,11 +47,12 @@ const HeaderDesktop = () => {
                             <UserIcon />
                         </div>
                     </div>
-                    <div className="size-[48px] bg-[#0A3C63] rounded-[12px] flex items-center justify-center">
+                    <Link href={"/cart"} 
+                        className="size-[48px] bg-[#0A3C63] rounded-[12px] flex items-center justify-center">
                         <div className="size-[24px]">
                             <BagIcon />
                         </div>
-                    </div>
+                    </Link>
                 </div>
             </div>
             <Menu />

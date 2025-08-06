@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import CategoryImage from "@/public/dev/productImage1.png";
-import ArrowLeft2Icon from "@/components/icons/home/arrowLeft2";
+import ArrowLeftIcon from "@/components/icons/profile/arrowLeft";
 import ArrowRight2Icon from "@/components/icons/home/arrowRight2";
 import { useRef } from "react";
 
@@ -34,7 +34,7 @@ const ProductCategories = () => {
                         <ArrowRight2Icon color="#0A3C63" />
                     </div>
                     <div className="size-[16px] cursor-pointer" onClick={() => nextSlideHandler()}>
-                        <ArrowLeft2Icon />
+                        <ArrowLeftIcon color="#0A3C63" />
                     </div>
                 </div>
             </div>
