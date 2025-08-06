@@ -33,10 +33,10 @@ const DropDownInput: FC<Props> = ({
       {show && (
         <Slide
           direction="up"
-          className={`absolute inset-x-0 top-full mt-1 bg-white rounded-lg p-2 shadow-lg ${classNameDropDown}`}
+          className={`absolute z-[6] inset-x-0 top-full mt-1 bg-white rounded-lg p-2 shadow-lg ${classNameDropDown}`}
           duration={300}
         >
-          <div className="max-h-48 grid grid-cols-1 gap-2 overflow-y-auto hide-scrollbar">
+          <div className="max-h-48 relative grid grid-cols-1 gap-2 overflow-y-auto hide-scrollbar">
             {items.map((item, idx) => (
               <p
                 key={idx}

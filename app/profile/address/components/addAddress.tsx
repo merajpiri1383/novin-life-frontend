@@ -3,8 +3,7 @@
 "use client"
 import ArrowDownIcon from "@/components/icons/profile/arrowDown";
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useState } from "react";
-import IranCity from "iran-city";
+import { useEffect, useRef, useState } from "react";
 
 const LeafletMap = dynamic(() => import("@/app/profile/components/leafletMap"), { ssr: false });
 const DropDownInput = dynamic(() => import("@/app/profile/components/dropdownInput"), { ssr: false });
@@ -24,14 +23,25 @@ type CityType = {
 
 const AddAddress = () => {
 
-    const AllProvince = useMemo(() => IranCity.allProvinces(), []);
+    const [AllProvince, setAllProvince] = useState<ProvinceType[]>([]);
     const [currentProvince, setProvince] = useState<string | null>(null);
     const [cities, setCities] = useState<CityType[]>([]);
     const [currentCity, setCity] = useState<string | null>(null);
+    const iranCityRef = useRef<null | typeof import("iran-city")>(null);
+
 
     useEffect(() => {
-        if (currentProvince) {
-            setCities(IranCity.searchByName(currentProvince));
+        import("iran-city").then(
+            (module) => {
+                iranCityRef.current = module;
+                setAllProvince(module.allProvinces());
+            }
+        )
+    }, []);
+
+    useEffect(() => {
+        if (currentProvince && iranCityRef.current) {
+            setCities(iranCityRef.current.searchByName(currentProvince));
         }
     }, [currentProvince]);
 
