@@ -9,11 +9,12 @@ import DiscountIcon from "@/components/icons/about/discount";
 import MenuIcon from "@/components/icons/about/menu";
 import MessageIcon from "@/components/icons/about/message";
 import ArrowDownIcon from "@/components/icons/about/arrowDown";
+import ArrowLeftIcon from "@/components/icons/profile/arrowLeft";
 
 type CategoryTypes = "order-tracking" | "order-registeration-process" | "login-signup" | "product-return"
     | "dicount-code" | "other";
 
-interface CategoryType {
+export interface CategoryType {
     text: string,
     type: CategoryTypes,
     active_icon: React.ReactNode,
@@ -27,33 +28,38 @@ interface CategoryType {
 }
 
 
-const Category: FC<CategoryType> = (props) => {
+export const Category: FC<CategoryType> = (props) => {
     return (
         <div className="grid grid-cols-1 my-4 cursor-pointer"
             onClick={() => props?.setCategory?.(props.type)}>
-            <div className={`flex items-center justify-start p-4 gap-[16px]
+            <div className={`flex items-center justify-between  pl-4
                 ${props.currentCategory === props.type
-                    ? "bg-[#D5E9F8]" : "bg-[#FAFAFA]"} rounded-[8px] transition duration-400`}>
-                <div className="size-[20px]">
-                    {
-                        props.currentCategory === props.type ? props.active_icon : props.icon
-                    }
+                ? "bg-[#D5E9F8]" : "bg-[#FAFAFA]"} rounded-[8px] transition duration-400`}>
+                <div className={`flex items-center justify-start p-4 gap-[16px]`}>
+                    <div className="size-[20px]">
+                        {
+                            props.currentCategory === props.type ? props.active_icon : props.icon
+                        }
+                    </div>
+                    <p className={`text-[14px] transition duration-400
+                ${props.currentCategory === props.type ?
+                            " text-[#0A3C63] font-semibold " : " text-[#3D3D3D] font-regular"}`}>
+                        {props.text}</p>
                 </div>
-                <p className={`text-[14px] transition duration-400
-                ${props.currentCategory === props.type ? 
-                " text-[#0A3C63] font-semibold " : " text-[#3D3D3D] font-regular"}`}>
-                {props.text}</p>
+                <div className="md:hidden size-[16px]">
+                    <ArrowLeftIcon color="#3D3D3D" />
+                </div>
             </div>
         </div>
     )
 };
 
-const Faq : FC<{
-    question : string,
-    answer : string,
-}> = ({ answer,question }) => {
+export const Faq: FC<{
+    question: string,
+    answer: string,
+}> = ({ answer, question }) => {
 
-    const [open,setOpen] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(false);
 
     return (
         <div className="col-span-1 cursor-pointer hover:bg-[#FAFAFA] p-4 rounded-[8px] transition
@@ -61,7 +67,7 @@ const Faq : FC<{
             <Slide duration={200} direction="up" triggerOnce>
                 <div onClick={() => setOpen(!open)}>
                     <div className="flex items-center justify-between">
-                        <p className="text-[#3D3D3D] font-regular text-[16px]">{question}</p>
+                        <p className="text-[#3D3D3D] font-regular text-[12px] md:text-[16px]">{question}</p>
                         <div className={`size-[20px] ${open && "rotate-180"}`}>
                             <ArrowDownIcon />
                         </div>
@@ -73,124 +79,124 @@ const Faq : FC<{
     )
 }
 
+export const categories: CategoryType[] = [
+    {
+        text: "پیگیری ارسال سفارش",
+        type: "order-tracking",
+        active_icon: <TruckFastIcon color={"#0A3C63"} />,
+        icon: <TruckFastIcon color={"#4DABF5"} />,
+        faqs: [
+            {
+                answer: "",
+                question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
+            }, {
+                answer: "",
+                question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
+            }, {
+                answer: "",
+                question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
+            }, {
+                answer: "",
+                question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
+            }, {
+                answer: "",
+                question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
+            }, {
+                answer: "",
+                question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
+            }, {
+                answer: "",
+                question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
+            }, {
+                answer: "",
+                question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
+            },
+        ]
+    }, {
+        text: "فرآیند ثبت سفارش",
+        type: "order-registeration-process",
+        active_icon: <ShopingCardIcon color={"#0A3C63"} />,
+        icon: <ShopingCardIcon color={"#4DABF5"} />,
+        faqs: [
+            {
+                answer: "",
+                question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
+            }, {
+                answer: "",
+                question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
+            }, {
+                answer: "",
+                question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
+            }, {
+                answer: "",
+                question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
+            }, {
+                answer: "",
+                question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
+            }, {
+                answer: "",
+                question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
+            }, {
+                answer: "",
+                question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
+            }, {
+                answer: "",
+                question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
+            },
+        ]
+    }, {
+        text: "ورود و ثبت نام",
+        type: "login-signup",
+        active_icon: <LoginIcon color={"#0A3C63"} />,
+        icon: <LoginIcon color={"#4DABF5"} />,
+        faqs: [
+            {
+                answer: "",
+                question: " مدت زمان ارسال سفارش چقدر است؟",
+            }, {
+                answer: "",
+                question: " مدت زمان ارسال سفارش چقدر است؟",
+            }, {
+                answer: "",
+                question: " مدت زمان ارسال سفارش چقدر است؟",
+            }, {
+                answer: "",
+                question: " مدت زمان ارسال سفارش چقدر است؟",
+            }, {
+                answer: "",
+                question: " مدت زمان ارسال سفارش چقدر است؟",
+            }, {
+                answer: "",
+                question: " مدت زمان ارسال سفارش چقدر است؟",
+            }, {
+                answer: "",
+                question: " مدت زمان ارسال سفارش چقدر است؟",
+            }, {
+                answer: "",
+                question: " مدت زمان ارسال سفارش چقدر است؟",
+            },
+        ]
+    }, {
+        text: "مرجوع کالا",
+        type: "product-return",
+        active_icon: <RotateRightIcon color={"#0A3C63"} />,
+        icon: <RotateRightIcon color={"#4DABF5"} />,
+    }, {
+        text: "کد تخفیف",
+        type: "dicount-code",
+        active_icon: <DiscountIcon color={"#0A3C63"} />,
+        icon: <DiscountIcon color={"#4DABF5"} />,
+    }, {
+        text: "سایر موارد",
+        type: "other",
+        active_icon: <MenuIcon color={"#0A3C63"} />,
+        icon: <MenuIcon color={"#4DABF5"} />,
+    },
+]
+
 const Faqs = () => {
 
     const [currentCategory, setCategory] = useState<CategoryTypes>("order-tracking");
-
-    const categories: CategoryType[] = [
-        {
-            text: "پیگیری ارسال سفارش",
-            type: "order-tracking",
-            active_icon: <TruckFastIcon color={"#0A3C63"} />,
-            icon: <TruckFastIcon color={"#4DABF5"} />,
-            faqs: [
-                {
-                    answer: "",
-                    question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
-                }, {
-                    answer: "",
-                    question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
-                }, {
-                    answer: "",
-                    question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
-                }, {
-                    answer: "",
-                    question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
-                }, {
-                    answer: "",
-                    question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
-                }, {
-                    answer: "",
-                    question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
-                }, {
-                    answer: "",
-                    question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
-                }, {
-                    answer: "",
-                    question: "چگونه می‌توانم وضعیت سفارش خود را پیگیری کنم؟"
-                },
-            ]
-        }, {
-            text: "فرآیند ثبت سفارش",
-            type: "order-registeration-process",
-            active_icon: <ShopingCardIcon color={"#0A3C63"} />,
-            icon: <ShopingCardIcon color={"#4DABF5"} />,
-            faqs: [
-                {
-                    answer: "",
-                    question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
-                }, {
-                    answer: "",
-                    question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
-                }, {
-                    answer: "",
-                    question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
-                }, {
-                    answer: "",
-                    question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
-                }, {
-                    answer: "",
-                    question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
-                }, {
-                    answer: "",
-                    question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
-                }, {
-                    answer: "",
-                    question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
-                }, {
-                    answer: "",
-                    question: "آیا پس از ثبت سفارش، به من اطلاع رسانی می‌شود؟",
-                },
-            ]
-        }, {
-            text: "ورود و ثبت نام",
-            type: "login-signup",
-            active_icon: <LoginIcon color={"#0A3C63"} />,
-            icon: <LoginIcon color={"#4DABF5"} />,
-            faqs: [
-                {
-                    answer: "",
-                    question: " مدت زمان ارسال سفارش چقدر است؟",
-                }, {
-                    answer: "",
-                    question: " مدت زمان ارسال سفارش چقدر است؟",
-                }, {
-                    answer: "",
-                    question: " مدت زمان ارسال سفارش چقدر است؟",
-                }, {
-                    answer: "",
-                    question: " مدت زمان ارسال سفارش چقدر است؟",
-                }, {
-                    answer: "",
-                    question: " مدت زمان ارسال سفارش چقدر است؟",
-                }, {
-                    answer: "",
-                    question: " مدت زمان ارسال سفارش چقدر است؟",
-                }, {
-                    answer: "",
-                    question: " مدت زمان ارسال سفارش چقدر است؟",
-                }, {
-                    answer: "",
-                    question: " مدت زمان ارسال سفارش چقدر است؟",
-                },
-            ]
-        }, {
-            text: "مرجوع کالا",
-            type: "product-return",
-            active_icon: <RotateRightIcon color={"#0A3C63"} />,
-            icon: <RotateRightIcon color={"#4DABF5"} />,
-        }, {
-            text: "کد تخفیف",
-            type: "dicount-code",
-            active_icon: <DiscountIcon color={"#0A3C63"} />,
-            icon: <DiscountIcon color={"#4DABF5"} />,
-        }, {
-            text: "سایر موارد",
-            type: "other",
-            active_icon: <MenuIcon color={"#0A3C63"} />,
-            icon: <MenuIcon color={"#4DABF5"} />,
-        },
-    ]
 
     return (
         <>
@@ -233,9 +239,9 @@ const Faqs = () => {
                     </div>
                     <div className="grid grid-cols-1 gap-4 my-4">
                         {
-                            categories.find((item) => item.type === currentCategory)?.faqs?.map((faq,index) => {
+                            categories.find((item) => item.type === currentCategory)?.faqs?.map((faq, index) => {
                                 return (
-                                    <Faq 
+                                    <Faq
                                         key={index}
                                         answer={faq.answer}
                                         question={faq.question}
