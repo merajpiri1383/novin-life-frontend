@@ -37,6 +37,12 @@
             ],
             "@/hooks/*" : [
                 "./hooks/*",
+            ],
+            "@/utils/*" : [
+                "./utils/*",
+            ],
+            "@/api/*" : [
+                "./app/api/*",
             ]
         },
         "plugins": [
