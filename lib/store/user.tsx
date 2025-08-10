@@ -4,7 +4,13 @@ import { persist } from "zustand/middleware";
 
 
 type userType = {
-    phone : string,
+    mobile ?: string | null,
+    id ?: number | null,
+    name ?: string | null,
+    family ?: string | null,
+    email ?: string | null,
+    birthdate ?: string | null,
+    avatar ?: string | null,
 }
 
 interface userStoreType {

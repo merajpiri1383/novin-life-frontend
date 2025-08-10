@@ -36,7 +36,7 @@ const Page = () => {
     useEffect(() => {
         toast.success(mutation.data?.message);
         if (mutation.isSuccess && input) {
-            setUser({ phone: input })
+            setUser({ mobile: input })
             router.push("/login/otp");
         }
         mutation.reset();

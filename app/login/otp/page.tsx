@@ -1,13 +1,15 @@
 "use client"
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Slide } from "react-awesome-reveal";
 import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import Cookies from "next-cookies-universal";
 import ArrowRightIcon from "@/components/icons/login/arrowRight";
 import useUserStore from "@/lib/store/user";
 import OtpInput from 'react-otp-input';
 import { VerifyOtp } from "@/app/api/auth";
-import { toast } from "react-toastify";
 
 
 
@@ -15,17 +17,18 @@ import { toast } from "react-toastify";
 const Page = () => {
 
     const [otp, setOtp] = useState<string | null>(null);
-    const { user } = useUserStore();
+    const { user , setUser } = useUserStore();
+    const router = useRouter();
     const mutation = useMutation({
         mutationFn: VerifyOtp,
     })
 
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (otp && user?.phone) {
+        if (otp && user?.mobile) {
             mutation.mutate({
                 code: parseInt(otp),
-                mobile: user?.phone,
+                mobile: user?.mobile,
             })
         } else {
             toast.warning("کد وارد شده نامعتبر است")
@@ -33,7 +36,26 @@ const Page = () => {
     };
 
     useEffect(() => {
-        console.log(mutation.data);
+
+        if (!user?.mobile) {
+            router.push("/login");
+        }
+
+        if (mutation.isSuccess) {
+            setUser({
+                avatar : mutation.data?.customer?.avatar, 
+                birthdate : mutation.data?.customer?.birthdate,
+                email : mutation.data?.customer?.email,
+                family : mutation.data?.customer?.family,
+                id : mutation.data?.customer?.id , 
+                name : mutation.data?.customer?.name
+            });
+            (async () => {
+                (await Cookies("client")).set("access_token",mutation.data?.access_token);
+            })();
+            router.push("/");
+            toast.success("loged in Successfully")
+        }
     }, [mutation.data]);
 
     return (

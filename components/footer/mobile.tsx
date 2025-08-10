@@ -67,8 +67,6 @@ const FooterMobile: FC<Props> = ({ groupLinks }) => {
 
     const currentPath = usePathname();
 
-    console.log(currentPath);
-
     return (
         <>
             <div className="bg-[#0A3C63] p-6 [direction:rtl]">
@@ -160,9 +158,9 @@ const FooterMobile: FC<Props> = ({ groupLinks }) => {
                     <Link href={"/"}>
                         <div className="size-[24px] mx-auto mb-2">
                             {
-                                currentPath === "/" ? 
-                                <HomeIconFull color="white" /> : 
-                                <HomeIcon color="white" />
+                                currentPath === "/" ?
+                                    <HomeIconFull color="white" /> :
+                                    <HomeIcon color="white" />
                             }
                         </div>
                         <p className="text-[#EDEDED] text-[12px] font-regular">خانه</p>
@@ -170,9 +168,9 @@ const FooterMobile: FC<Props> = ({ groupLinks }) => {
                     <div>
                         <div className="size-[24px] mx-auto mb-2">
                             {
-                                currentPath === "/me" ? 
-                                <NoteAddFullIcon color="white" /> : 
-                                <NoteAddIcon color="white" />
+                                currentPath === "/me" ?
+                                    <NoteAddFullIcon color="white" /> :
+                                    <NoteAddIcon color="white" />
                             }
                         </div>
                         <p className="text-[#EDEDED] text-[12px] font-regular">آپشنال</p>
@@ -180,9 +178,9 @@ const FooterMobile: FC<Props> = ({ groupLinks }) => {
                     <Link href={"/cart"}>
                         <div className="size-[24px] mx-auto mb-2">
                             {
-                                currentPath === "/cart" ? 
-                                <ShopingCartFullIcon color="white" /> : 
-                                <ShopingCardIcon color="white" />
+                                currentPath === "/cart" ?
+                                    <ShopingCartFullIcon color="white" /> :
+                                    <ShopingCardIcon color="white" />
                             }
                         </div>
                         <p className="text-[#EDEDED] text-[12px] font-regular">سبد خرید</p>
@@ -190,9 +188,9 @@ const FooterMobile: FC<Props> = ({ groupLinks }) => {
                     <Link href={"/profile"}>
                         <div className="size-[24px] mx-auto mb-2">
                             {
-                                currentPath.startsWith("/profile") ? 
-                                <UserFullIcon color="white" /> : 
-                                <UserIcon color="white" />
+                                currentPath.startsWith("/profile") ?
+                                    <UserFullIcon color="white" /> :
+                                    <UserIcon color="white" />
                             }
                         </div>
                         <p className="text-[#EDEDED] text-[12px] font-regular">پروفایل</p>
