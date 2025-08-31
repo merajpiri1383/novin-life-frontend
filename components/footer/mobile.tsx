@@ -21,6 +21,8 @@ import ShopingCardIcon from "@/icons/about/shopingCard";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { FooterType } from "@/components/types";
+
 
 const NewsInput = dynamic(() => import("@/components/footer/newsInput"), { ssr: false });
 
@@ -49,7 +51,14 @@ const GroupLink: FC<GroupLinkType> = ({ items, title }) => {
                 {
                     open && items.map((item, index) => {
                         return (
-                            <li className="text-[#EDEDED] text-[12px] my-1" key={index}>{item.text}</li>
+                            <li key={index} className="text-[#EDEDED] text-[12px] my-1">
+                                {
+                                    item.link ?
+                                        <Link href={item.link}>{item.title}</Link> :
+                                        <p>{item.title}</p>
+                                }
+
+                            </li>
                         )
                     })
                 }
@@ -59,11 +68,7 @@ const GroupLink: FC<GroupLinkType> = ({ items, title }) => {
 };
 
 
-interface Props {
-    groupLinks: GroupLinkType[]
-}
-
-const FooterMobile: FC<Props> = ({ groupLinks }) => {
+const FooterMobile: FC<FooterType> = ({ license, quickAccess, socialMedia, text }) => {
 
     const currentPath = usePathname();
 
@@ -80,9 +85,13 @@ const FooterMobile: FC<Props> = ({ groupLinks }) => {
                 </div>
                 <div className="grid grid-cols-1 gap-4 mt-4">
                     {
-                        groupLinks.map((groupLink, index) => {
+                        quickAccess?.map((groupLink, index) => {
                             return (
-                                <GroupLink {...groupLink} key={index} />
+                                <GroupLink
+                                    title={groupLink.title}
+                                    items={groupLink.items}
+                                    key={index}
+                                />
                             )
                         })
                     }
@@ -91,50 +100,35 @@ const FooterMobile: FC<Props> = ({ groupLinks }) => {
                 <div className="my-6 grid grid-cols-3 items-center">
                     <div className="col-span-2">
                         <div className="flex items-center justify-start gap-6">
-                            <div className="w-[41px] h-[48px] relative">
-                                <Image
-                                    src={NamadImage}
-                                    alt="namad image"
-                                    fill={true}
-                                    className="rounded-[2px]"
-                                    sizes="100%"
-                                    style={{ objectFit: "cover", objectPosition: "center" }}
-                                />
-                            </div>
-                            <div className="w-[41px] h-[48px] relative">
-                                <Image
-                                    src={NamadImage}
-                                    alt="namad image"
-                                    fill={true}
-                                    className="rounded-[2px]"
-                                    sizes="100%"
-                                    style={{ objectFit: "cover", objectPosition: "center" }}
-                                />
-                            </div>
-                            <div className="w-[41px] h-[48px] relative">
-                                <Image
-                                    src={NamadImage}
-                                    alt="namad image"
-                                    fill={true}
-                                    className="rounded-[2px]"
-                                    sizes="100%"
-                                    style={{ objectFit: "cover", objectPosition: "center" }}
-                                />
-                            </div>
+                            {
+                                license?.map((item, index) => {
+                                    return (
+                                        <div className="w-[41px] h-[48px] relative overflow-hidden" key={index}>
+                                            {item.code}
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                         <div className="flex items-center my-6 justify-start gap-[16px]">
-                            <div className="size-[32px]">
-                                <YoutubeIcon color="#0A3C63" />
-                            </div>
-                            <div className="size-[32px]">
-                                <WhatsAppIcon color="#0A3C63" />
-                            </div>
-                            <div className="size-[32px]">
-                                <TelegramIcon color="#0A3C63" />
-                            </div>
-                            <div className="size-[32px]">
-                                <InstagramIcon color="#0A3C63" />
-                            </div>
+                            {
+                                socialMedia?.map((item, index) => {
+                                    return (
+                                        <Link href={item.link ? item.link : "/"} key={index}>
+                                            <div className="size-[32px] relative" >
+                                                {
+                                                    item.image && <Image
+                                                        src={item.image}
+                                                        alt="social media"
+                                                        fill={true}
+                                                        sizes="100%"
+                                                    />
+                                                }
+                                            </div>
+                                        </Link>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                     <div className="col-span-1">
@@ -150,8 +144,9 @@ const FooterMobile: FC<Props> = ({ groupLinks }) => {
                         </div>
                     </div>
                 </div>
-                <p className="text-[#FFFFFF] font-medium text-[10px] text-center">
-                    تمام حقوق این وبسایت متعلق به فروشگاه آنلاین نوین لایف می باشد</p>
+                <p className="text-[#FFFFFF] font-medium text-[10px] text-center text-justify leading-6">
+                    {text}
+                </p>
             </div>
             <div className="bg-[#0A3C63] p-6 py-3 [direction:rtl] border-t border-white sticky bottom-0 z-[25]">
                 <div className="flex items-center justify-between">

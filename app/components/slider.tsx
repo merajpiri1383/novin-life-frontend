@@ -39,7 +39,7 @@ type SlideType = {
 
 const SwiperImageSlide: FC<SlideType> = (props) => {
     return (
-        <Link href={props.url ? props.url : "/"}>
+        <Link href={props.url ? props.url : "/"} target="_blank">
             <div className="relative my-2 md:my-0 h-[169px] md:h-[500px] w-full">
                 {
                     props.image.original_url && <Image

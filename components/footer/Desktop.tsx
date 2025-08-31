@@ -9,7 +9,10 @@ import SecuritySafeIcon from "@/icons/footer/securitySafe";
 import { GroupLinkType } from ".";
 import dynamic from "next/dynamic";
 
-const NewsInput = dynamic(() => import("@/components/footer/newsInput"),{ssr : false});
+import { FooterType } from "@/components/types";
+import Link from "next/link";
+
+const NewsInput = dynamic(() => import("@/components/footer/newsInput"), { ssr: false });
 
 
 
@@ -23,7 +26,7 @@ const GroupLink: FC<GroupLinkType> = (props) => {
                     props.items.map((item, index) => {
                         return (
                             <li key={index}
-                                className="col-span-1 text-[14px] text-[#F2F2F2] font-bold">{item.text}</li>
+                                className="col-span-1 text-[14px] text-[#F2F2F2] font-bold">{item.title}</li>
                         )
                     })
                 }
@@ -32,41 +35,49 @@ const GroupLink: FC<GroupLinkType> = (props) => {
     )
 };
 
-interface Props {
-    groupLinks: GroupLinkType[]
-}
 
-const FooterDesktop: FC<Props> = ({ groupLinks }) => {
+const FooterDesktop: FC<FooterType> = ({ license, quickAccess, socialMedia, text }) => {
 
     return (
         <div className="bg-[#06425D] [direction:rtl]">
             <div className="p-[80px] flex items-start justify-between">
                 <div className="grid grid-cols-4">
                     {
-                        groupLinks.map((groupLink, index) => {
+                        quickAccess?.map((groupLink, index) => {
                             return (
-                                <GroupLink {...groupLink} key={index} />
+                                <GroupLink
+                                    title={groupLink.title}
+                                    items={groupLink.items}
+                                    key={index}
+                                />
                             )
                         })
                     }
                 </div>
                 <div>
-                    <p className="text-[#FFFFFF] text-[14px] font-bold">برای دریافت تخفیف های بیشتر ما را دنبال کنید!</p>
+                    <p className="text-[#FFFFFF] text-[14px] font-bold">
+                        برای دریافت تخفیف های بیشتر ما را دنبال کنید!</p>
                     <div className="flex items-center justify-between my-2">
-                        <div className="size-[40px]">
-                            <YoutubeIcon />
-                        </div>
-                        <div className="size-[40px]">
-                            <WhatsAppIcon />
-                        </div>
-                        <div className="size-[40px]">
-                            <TelegramIcon />
-                        </div>
-                        <div className="size-[40px]">
-                            <InstagramIcon />
-                        </div>
+                        {
+                            socialMedia?.map((item, index) => {
+                                return (
+                                    <Link href={item.link ? item.link : "/"} key={index}>
+                                        <div className="size-[40px] relative" >
+                                            {
+                                                item.image && <Image
+                                                    src={item.image}
+                                                    alt="social media"
+                                                    fill={true}
+                                                    sizes="100%"
+                                                />
+                                            }
+                                        </div>
+                                    </Link>
+                                )
+                            })
+                        }
                     </div>
-                    
+
                     <NewsInput />
 
                 </div>
@@ -76,46 +87,19 @@ const FooterDesktop: FC<Props> = ({ groupLinks }) => {
                 <div className="col-span-1">
                     <p className="text-[#F2F2F2] font-bold text-[14px]">فروشگاه اینترنتی نوین لایف</p>
                     <p className="text-[#F2F2F2] font-bold text-[12px] my-2 text-justify leading-6">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                        و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                        سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-                        بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                        شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان
-                        رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت
-                        می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد </p>
+                        {text}</p>
                 </div>
                 <div className="col-span-1 flex items-center justify-end">
                     <div className="grid grid-cols-3 items-center gap-[24px] w-fit">
-                        <div className="w-[68px] h-[80px] relative col-span-1">
-                            <Image
-                                src={NamadImage}
-                                alt="namad"
-                                fill={true}
-                                sizes="100%"
-                                className="rounded-[2px] border-[1px] border-[#000000]"
-                                style={{ objectFit: "cover", objectPosition: "center" }}
-                            />
-                        </div>
-                        <div className="w-[68px] h-[80px] relative col-span-1">
-                            <Image
-                                src={NamadImage}
-                                alt="namad"
-                                fill={true}
-                                sizes="100%"
-                                className="rounded-[2px] border-[1px] border-[#000000]"
-                                style={{ objectFit: "cover", objectPosition: "center" }}
-                            />
-                        </div>
-                        <div className="w-[68px] h-[80px] relative col-span-1">
-                            <Image
-                                src={NamadImage}
-                                alt="namad"
-                                fill={true}
-                                sizes="100%"
-                                className="rounded-[2px] border-[1px] border-[#000000]"
-                                style={{ objectFit: "cover", objectPosition: "center" }}
-                            />
-                        </div>
+                        {
+                            license?.map((item, index) => {
+                                return (
+                                    <div key={index} className="w-[68px] h-[80px] relative col-span-1 overflow-hidden">
+                                        {item.code}
+                                    </div>
+                                )
+                            })
+                        }
                         <p className="text-[#F9F9F9] font-bold text-[12px] col-span-3 text-center">یک هفته ضمانت بازگشت ✍</p>
                     </div>
                 </div>
