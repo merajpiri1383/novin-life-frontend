@@ -1,14 +1,16 @@
-import MobileProduct from "@/app/components/mobileProduct";
 import { FC } from "react";
+import MobileProduct from "@/app/components/mobileProduct";
+import { ProductMainType } from "@/app/types";
+
 
 
 interface Props {
-    title ?: string,
-    counts ?: number[],
-    className ?: string,
+    title?: string,
+    products?: ProductMainType[],
+    className?: string,
 }
 
-const MobileProducts : FC<Props> = ({ counts = [] , title = "" , className }) => {
+const MobileProducts: FC<Props> = ({ products = [], title = "", className }) => {
 
     return (
         <div className={`m-6 [direction:rtl] ${className}`}>
@@ -18,13 +20,15 @@ const MobileProducts : FC<Props> = ({ counts = [] , title = "" , className }) =>
             </div>
             <div className="my-4 grid grid-cols-2 gap-[15px]">
                 {
-                    counts.map((item,index) => {
+                    products.map((product, index) => {
                         return (
-                            <MobileProduct key={index} />
+                            <MobileProduct
+                                {...product}
+                                key={index} />
                         )
                     })
                 }
             </div>
         </div>
     )
-};export default MobileProducts;
+}; export default MobileProducts;

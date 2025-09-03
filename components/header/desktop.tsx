@@ -10,6 +10,7 @@ const Menu = dynamic(() => import("@/components/header/menu"), { ssr: false });
 
 
 const HeaderDesktop = () => {
+
     return (
         <>
             <div className="flex items-center justify-between">
@@ -47,7 +48,7 @@ const HeaderDesktop = () => {
                             <UserIcon />
                         </div>
                     </div>
-                    <Link href={"/cart"} 
+                    <Link href={"/cart"}
                         className="size-[48px] bg-[#0A3C63] rounded-[12px] flex items-center justify-center">
                         <div className="size-[24px]">
                             <BagIcon />
