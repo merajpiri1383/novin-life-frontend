@@ -27,12 +27,14 @@ const DesktopProduct: FC<ProductMainType> = (props) => {
                         }
                     </div>
                     <div className="flex items-center justify-between mt-2">
-                        <p className="text-[#3D3D3D] font-semibold text-[18px]">{props.title}</p>
+                        <p className="text-[#3D3D3D] font-semibold text-[18px] h-6 overflow-hidden">
+                            {props.title}
+                        </p>
                         <div className="size-[24px]">
                             <HeartIcon />
                         </div>
                     </div>
-                    <p className="mt-2 text-[#3D3D3D] text-[16px] text-justify">
+                    <p className="mt-2 text-[#3D3D3D] text-[16px] text-justify h-6 overflow-hidden">
                         {props.summary}
                     </p>
 

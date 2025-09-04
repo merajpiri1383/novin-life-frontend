@@ -10,8 +10,8 @@ export interface ProductMainType {
     slug?: string,
     image?: string,
     summary?: string | null,
-    score?: string,
-    price?: string
+    score?: string | number,
+    price?: string | number
 }
 
 export interface MainPageType {

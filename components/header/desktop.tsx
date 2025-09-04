@@ -1,15 +1,19 @@
 import Image from "next/image";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import Logo from "@/public/logo.svg";
 import UserIcon from "@/icons/header/user";
 import BagIcon from "@/icons/header/bag";
 import SearchIcon from "@/icons/header/search";
-import Link from "next/link";
+import useUserStore from "@/lib/store/user";
+
 
 const Menu = dynamic(() => import("@/components/header/menu"), { ssr: false });
 
 
 const HeaderDesktop = () => {
+
+    const user = useUserStore((state) => state.user);
 
     return (
         <>
@@ -41,9 +45,17 @@ const HeaderDesktop = () => {
                 <div className="flex items-center justify-center gap-[16px]">
                     <div className="flex items-center justify-center gap-[16px] bg-[#FFFFFF] 
                     shadow-[0px_0px_20px_1px_rgba(0,0,0,.1)] p-3 rounded-[12px]">
-                        <Link
-                            href={"/login"}
-                            className="text-[#3D3D3D] font-bold text-[16px]">ثبت‌نام | ورود</Link>
+                        {
+                            user?.id ?
+                                <div 
+                                    className="flex items-center justify-center gap-2 text-[#3D3D3D] font-bold text-[16px]">
+                                    <span>سلام</span>
+                                    <span>{user.name}</span>
+                                </div> :
+                                <Link
+                                    href={"/login"}
+                                    className="text-[#3D3D3D] font-bold text-[16px]">ثبت‌نام | ورود</Link>
+                        }
                         <div className="size-[24px] relative">
                             <UserIcon />
                         </div>

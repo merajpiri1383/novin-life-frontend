@@ -43,7 +43,7 @@ const Page = () => {
 
         if (mutation.isSuccess) {
             setUser({
-                avatar : mutation.data?.customer?.avatar, 
+                avatar : mutation.data?.customer?.avatar,
                 birthdate : mutation.data?.customer?.birthdate,
                 email : mutation.data?.customer?.email,
                 family : mutation.data?.customer?.family,

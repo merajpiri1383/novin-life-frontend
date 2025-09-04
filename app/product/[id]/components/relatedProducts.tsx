@@ -1,9 +1,9 @@
+import { RelatedProductType } from "@/app/product/types";
 import OceanIcon from "@/components/icons/product/ocean";
-import { Product } from "@/app/components/mostVisit";
+import DesktopProduct from "@/app/components/desktopProduct";
+import { FC } from "react";
 
-const RelatedProducts = () => {
-
-    const products = [1,2,3,4];
+const RelatedProducts: FC<{ products: RelatedProductType[] }> = ({ products }) => {
 
     return (
         <div className="my-12">
@@ -19,13 +19,20 @@ const RelatedProducts = () => {
             </div>
             <div className="my-6 grid grid-cols-4 gap-[24px]">
                 {
-                    products.map((product) => {
+                    products.map((product, index) => {
                         return (
-                            <Product index={product} key={product} />
+                            <DesktopProduct
+                                price={product.price}
+                                score={product.rating}
+                                slug={product.slug}
+                                summary={product.summary}
+                                title={product.title}
+                                image={product.index_image?.url}
+                                key={index} />
                         )
                     })
                 }
             </div>
         </div>
     )
-};export default RelatedProducts;
+}; export default RelatedProducts;
