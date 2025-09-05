@@ -1,7 +1,7 @@
 "use client"
 import { FC, useEffect, useState } from "react";
 import Image from "next/image";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { AddProductToCart } from "@/app/api/product";
 import { ProductDetailType } from "@/app/product/types";
@@ -20,6 +20,7 @@ const ProductDetail: FC<ProductDetailType> = (props) => {
 
     const [productCount, setProductCount] = useState<number>(1);
     const router = useRouter();
+    const queryClient = useQueryClient();
 
     const mutation = useMutation({
         mutationKey: ["add-cart"],
@@ -31,7 +32,8 @@ const ProductDetail: FC<ProductDetailType> = (props) => {
             }
         },
         onSuccess : () => {
-            toast.success("محصول با به سبد خرید اضافه شد")
+            toast.success("محصول با به سبد خرید اضافه شد");
+            queryClient.invalidateQueries({queryKey : ["cart"]})
         }
     });
 
