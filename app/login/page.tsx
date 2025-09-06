@@ -40,7 +40,7 @@ const Page = () => {
             router.push("/login/otp");
         }
         mutation.reset();
-    }, [mutation?.data]);
+    }, [mutation,router,input,setUser]);
 
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

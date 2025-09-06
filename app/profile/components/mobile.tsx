@@ -1,4 +1,4 @@
-import MobileProducts from "@/app/components/mobileProducts";
+// import MobileProducts from "@/app/components/mobileProducts";
 import TickCircleIcon from "@/components/icons/profile/tickCircle";
 import CloseCircleIcon from "@/components/icons/profile/closeCircle";
 import MoreCircleIcon from "@/components/icons/profile/moreCircle";
@@ -40,16 +40,16 @@ const ProfileMobile = () => {
                     </div>
                 </div>
             </div>
-            <MobileProducts 
+            {/* <MobileProducts 
                 counts={[1,2]} 
                 title="علاقه مندی های من" 
                 className="mx-0"
-            />
-            <MobileProducts 
+            /> */}
+            {/* <MobileProducts 
                 counts={[1,2,3,4]} 
                 title="خرید های پر تکرار من"
                 className="mx-0"
-            />
+            /> */}
         </>
     )
 };export default ProfileMobile;

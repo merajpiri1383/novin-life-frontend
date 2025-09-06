@@ -47,30 +47,36 @@ const CartProduct: FC<CartProductType> = (props) => {
                 router.push("/login");
             }
         },
-        onSuccess: (response) => {
+        onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["cart"] });
         }
     })
 
 
     const addHandler = () => {
-        props.id && updateMutation.mutate({
-            quantity: quantity + 1,
-            id: props.id,
-        })
-        setQuantiy(quantity + 1);
+        if (props.id) {
+            updateMutation.mutate({
+                quantity: quantity + 1,
+                id: props.id,
+            })
+            setQuantiy(quantity + 1);
+        }
     }
 
     const decreaseHandler = () => {
-        quantity > 1 && props.id && updateMutation.mutate({
-            quantity: quantity - 1,
-            id: props.id,
-        })
-        quantity > 1 && setQuantiy(quantity - 1);
+        if (quantity > 1 && props.id) {
+            updateMutation.mutate({
+                quantity: quantity - 1,
+                id: props.id,
+            })
+            setQuantiy(quantity - 1);
+        }
     }
 
     const clearHandler = () => {
-        props.id && removeMutation.mutate(props.id);
+        if (props.id) {
+            removeMutation.mutate(props.id);
+        }
     }
 
     return (

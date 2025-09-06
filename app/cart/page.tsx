@@ -27,7 +27,7 @@ const Page = () => {
             toast.error("وارد حساب کاربری خود شوید");
             router.push("/login");
         }
-    }, [query.error]);
+    }, [query,router]);
 
     return (
         <>
@@ -38,7 +38,11 @@ const Page = () => {
                         cart_products={query.data?.items}
                         summary={query.data?.summary}
                     /> :
-                    <Mobile />
+                    <Mobile
+                        isPending={query.isPending}
+                        cart_products={query.data?.items}
+                        summary={query.data?.summary}
+                    />
             }
         </>
     )

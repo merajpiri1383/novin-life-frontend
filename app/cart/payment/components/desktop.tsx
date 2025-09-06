@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { Slide } from "react-awesome-reveal";
 import InfoCircleIcon from "@/components/icons/cart/infoCircle";
-const Cost = dynamic(() => import("@/app/cart/components/summary"), { ssr: true });
+// const Summary = dynamic(() => import("@/app/cart/components/summary"), { ssr: true });
 const Address = dynamic(() => import("@/app/cart/payment/components/address"), { ssr: true });
 const SendTime = dynamic(() => import("@/app/cart/payment/components/sendTime"), { ssr: true });
 const PaymentMethod = dynamic(() => import("@/app/cart/payment/components/paymentMethod"),{ssr : true});
@@ -41,7 +41,7 @@ const CartPaymentDesktop = () => {
                         </div>
                     </Slide>
                     <Slide duration={400} triggerOnce direction="left" className="my-6">
-                        <Cost />
+                        {/* <Summary }/> */}
                     </Slide>
                     <Slide direction="up" duration={400} triggerOnce>
                         <div className="p-4 border-[#D6D6D6] border-[1px] rounded-[8px]">

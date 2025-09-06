@@ -1,5 +1,5 @@
 "use client"
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import Image from "next/image";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
@@ -25,23 +25,25 @@ const ProductDetail: FC<ProductDetailType> = (props) => {
     const mutation = useMutation({
         mutationKey: ["add-cart"],
         mutationFn: AddProductToCart,
-        onError : (error : AxiosError) => {
+        onError: (error: AxiosError) => {
             if (error.response && error.response.status === 401) {
                 toast.error("شما باید وارد حساب کاربری خود شوید");
                 router.push("/login");
             }
         },
-        onSuccess : () => {
+        onSuccess: () => {
             toast.success("محصول با به سبد خرید اضافه شد");
-            queryClient.invalidateQueries({queryKey : ["cart"]})
+            queryClient.invalidateQueries({ queryKey: ["cart"] })
         }
     });
 
     const AddCartHandler = () => {
-        props?.id && mutation.mutate({
-            product_id: props.id,
-            quantity: productCount,
-        })
+        if (props.id) {
+            mutation.mutate({
+                product_id: props.id,
+                quantity: productCount,
+            })
+        }
     }
 
     return (

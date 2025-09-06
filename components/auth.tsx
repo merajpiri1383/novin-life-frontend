@@ -30,7 +30,7 @@ const Auth: FC<{ children: React.ReactNode }> = ({ children }) => {
         if (data?.output.theme) {
             companyStore.setTheme(data.output.theme);
         }
-    }, [data]);
+    }, [data,companyStore]);
 
     return (
         children

@@ -56,7 +56,7 @@ const Page = () => {
             router.push("/");
             toast.success("loged in Successfully")
         }
-    }, [mutation.data]);
+    }, [user?.mobile, router, mutation.isSuccess, mutation.data, setUser]);
 
     return (
         <Slide duration={300} direction="up" triggerOnce className="m-6 md:m-0">

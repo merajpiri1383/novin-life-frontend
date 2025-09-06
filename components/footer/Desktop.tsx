@@ -1,10 +1,5 @@
 import Image from "next/image";
 import { FC } from "react";
-import YoutubeIcon from "@/icons/footer/youtube";
-import WhatsAppIcon from "@/icons/footer/whatsapp";
-import TelegramIcon from "@/icons/footer/telegram";
-import InstagramIcon from "@/icons/footer/instagram";
-import NamadImage from "@/public/dev/namad.svg";
 import SecuritySafeIcon from "@/icons/footer/securitySafe";
 import { GroupLinkType } from ".";
 import dynamic from "next/dynamic";

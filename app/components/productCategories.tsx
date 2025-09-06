@@ -1,20 +1,20 @@
 "use client"
 import { useRef } from "react";
 import Image from "next/image";
-import { GetProductCategories } from "@/api/products";
+// import { GetProductCategories } from "@/api/products";
 import CategoryImage from "@/public/dev/productImage1.png";
 import ArrowLeftIcon from "@/components/icons/profile/arrowLeft";
 import ArrowRight2Icon from "@/components/icons/home/arrowRight2";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 
 
 const ProductCategories = () => {
 
     const scrollableDivRef = useRef<null | HTMLDivElement>(null);
-    const { data ,isLoading } = useQuery({
-        queryKey: ["product-category"],
-        queryFn: GetProductCategories,
-    });
+    // const { data ,isLoading } = useQuery({
+    //     queryKey: ["product-category"],
+    //     queryFn: GetProductCategories,
+    // });
 
     const prevSlideHandler = () => {
         scrollableDivRef.current?.scrollBy({

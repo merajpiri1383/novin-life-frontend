@@ -13,7 +13,7 @@ const Page = () => {
 
     const params: { id: string } = useParams();
 
-    const { data, isPending } = useQuery({
+    const { data } = useQuery({
         queryKey: ["GetProductDetail"],
         queryFn: () => GetProductDetail(params.id)
     });

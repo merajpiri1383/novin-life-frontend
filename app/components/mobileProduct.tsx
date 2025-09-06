@@ -1,5 +1,4 @@
 import Image from "next/image";
-import ProductImage from "@/public/dev/productImage1.png"
 import HeartIcon from "@/components/icons/home/heart";
 import AddSquareIcon from "@/components/icons/cart/addSquare";
 import { ProductMainType } from "@/app/types";

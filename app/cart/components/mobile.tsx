@@ -1,15 +1,21 @@
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { Slide } from "react-awesome-reveal";
 import TickCircleIcon from "@/components/icons/profile/tickCircle";
 import InfoCircleIcon from "@/components/icons/cart/infoCircle";
-import Link from "next/link";
+import { CartProductType, SummaryType } from "@/app/cart/types";
+import { FC } from "react";
 const MobileCartProduct = dynamic(() => import("@/app/cart/components/mobileCartProduct"), { ssr: false });
 
 
 
-const CartMobile = () => {
+interface Props {
+    cart_products?: CartProductType[],
+    isPending: boolean,
+    summary?: SummaryType
+}
 
-    const products = [1, 2, 3];
+const CartMobile: FC<Props> = (props) => {
 
     return (
         <div className="m-6 [direction:rtl]">
@@ -19,9 +25,12 @@ const CartMobile = () => {
 
             <div className="grid grid-cols-1 gap-6 my-6">
                 {
-                    products.map((product, index) => {
+                    props.cart_products?.map((product, index) => {
                         return (
-                            <MobileCartProduct key={index} />
+                            <MobileCartProduct 
+                                {...product}
+                                key={index} 
+                            />
                         )
                     })
                 }
@@ -51,28 +60,28 @@ const CartMobile = () => {
                 <div className="flex items-center justify-between my-3">
                     <p className="tex-[#3D3D3D] font-medium text-[14px]">قیمت کالا ها</p>
                     <p className="text-[#3D3D3D] font-medium text-[14px]">
-                        <span>۲۴۰.۰۰۰</span>
+                        <span>{props.summary?.total_price}</span>
                         <span>تومان</span>
                     </p>
                 </div>
                 <div className="flex items-center justify-between my-3">
                     <p className="text-[#F44336] font-medium text-[14px]"> سود شما از خرید</p>
                     <p className="text-[#F44336] font-medium text-[14px]">
-                        <span>۲۰.۰۰۰</span>
+                        <span>{props.summary?.discount}</span>
                         <span>تومان</span>
                     </p>
                 </div>
                 <div className="flex items-center justify-between my-3">
-                    <p className="tex-[#3D3D3D] font-medium text-[14px]">هزینه ارسال</p>
+                    <p className="tex-[#3D3D3D] font-medium text-[14px]">تعداد</p>
                     <p className="text-[#3D3D3D] font-medium text-[14px]">
-                        <span>۵۰.۰۰۰</span>
+                        <span>{props.summary?.items_count}</span>
                         <span>تومان</span>
                     </p>
                 </div>
                 <div className="flex items-center justify-between my-3 border-t border-[#EDEDED] pt-3">
                     <p className="tex-[#3D3D3D] font-medium text-[14px]">مبلغ قابل پرداخت</p>
                     <p className="text-[#3D3D3D] font-medium text-[14px]">
-                        <span>۲۹۰.۰۰۰</span>
+                        <span>{props.summary?.final_total}</span>
                         <span>تومان</span>
                     </p>
                 </div>
