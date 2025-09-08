@@ -9,5 +9,6 @@ const nextConfig : NextConfig = {
                 protocol : "https",
             }
         ]
-    }
+    },
+    "productionBrowserSourceMaps" : true,
 };export default nextConfig;

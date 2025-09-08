@@ -19,17 +19,23 @@ const Auth: FC<{ children: React.ReactNode }> = ({ children }) => {
 
     useEffect(() => {
 
-        if (data?.output.footer) {
-            companyStore.setFooter(data?.output.footer);
-        }
+        try {
+            if (data?.output.footer) {
+                companyStore.setFooter(data?.output.footer);
+            }
+        } catch { }
 
-        if (data?.output.header) {
-            companyStore.setHeader(data.output.header);
-        }
+        try {
+            if (data?.output.header) {
+                companyStore.setHeader(data.output.header);
+            }
+        } catch { }
 
-        if (data?.output.theme) {
-            companyStore.setTheme(data.output.theme);
-        }
+        try {
+            if (data?.output.theme) {
+                companyStore.setTheme(data.output.theme);
+            }
+        } catch {}
     }, [data]);
 
     return (
