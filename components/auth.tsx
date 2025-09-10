@@ -36,7 +36,7 @@ const Auth: FC<{ children: React.ReactNode }> = ({ children }) => {
                 setTheme(data.output.theme);
             }
         } catch {}
-    }, [data, setFooter, setHeader, setTheme]);
+    }, [data]); // Remove setFooter, setHeader, setTheme from dependencies
 
     return (
         children

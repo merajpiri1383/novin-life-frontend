@@ -7,7 +7,7 @@ import ReactQueryProvider from "@/utils/providers/reactQuery";
 import { ToastContainer } from "react-toastify";
 const Header = dynamic(() => import("@/components/header"), { ssr: true });
 const Footer = dynamic(() => import("@/components/footer"), { ssr: true });
-const Auth = dynamic(() => import("@/components/auth"), { ssr: true });
+// const Auth = dynamic(() => import("@/components/auth"), { ssr: true });
 
 
 const IranSansFont = localFont({
@@ -30,11 +30,9 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
         <html className="hide-scrollbar">
             <body className={IranSansFont.variable}>
                 <ReactQueryProvider>
-                    <Auth>
-                        <Header />
-                        {children}
-                        <Footer />
-                    </Auth>
+                    <Header />
+                    {children}
+                    <Footer />
                 </ReactQueryProvider>
                 <ToastContainer
                     draggable={true}
