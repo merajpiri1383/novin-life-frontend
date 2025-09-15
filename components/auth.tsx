@@ -16,7 +16,6 @@ const Auth: FC<{ children: React.ReactNode }> = ({ children }) => {
 
     const { setFooter, setHeader, setTheme } = useCompanyStore();
 
-
     useEffect(() => {
 
         try {

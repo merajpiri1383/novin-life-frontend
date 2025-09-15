@@ -11,7 +11,7 @@ interface Props {
 
 const LoginLayout: FC<Props> = ({ children }) => {
     return (
-        <div className="fixed top-0 left-0 bottom-0 right-0 bg-white z-[10] [direction:rtl]">
+        <div className="fixed top-0 left-0 bottom-0 right-0 bg-white z-[50] [direction:rtl]">
             <div className="w-full h-full grid grid-cols-2">
                 <div className="col-span-2 md:col-span-1 relative flex items-center justify-center">
                     <div className="absolute top-0 left-0">
