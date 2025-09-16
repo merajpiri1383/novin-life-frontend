@@ -7,3 +7,11 @@ export const GetProductCategories = async () => {
     )
     return result;
 };
+
+
+export const GetProductFilter = async () => {
+    const result = await Api.get("/website/filterProduct/").then(
+        (response) => response.data,
+    );
+    return result;
+};

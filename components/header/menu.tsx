@@ -31,9 +31,9 @@ const Menu: FC = () => {
 
             <p className="font-bold text-[16px] text-[#F44336]">تخفیفات ویژه</p>
 
-            <p className="font-bold text-[16px] text-[#2196F3]">پرفروش ترین ها</p>
+            <Link href={"#most-sell"} className="font-bold text-[16px] text-[#2196F3]">پرفروش ترین ها</Link>
 
-            <p className="font-bold text-[16px] text-[#2196F3]">جدید ترین محصولات</p>
+            <Link href={"/product"} className="font-bold text-[16px] text-[#2196F3]">جدید ترین محصولات</Link>
 
         </div>
     )

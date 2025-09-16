@@ -1,10 +1,11 @@
 "use client"
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
-import { Product } from "@/app/components/mostVisit";
+import { FC, useEffect, useState } from "react";
+import {ProductType} from "@/app/product/types";
 import ArrowLeftCircleIcon from "@/components/icons/blog/arrowLeftCircle";
 import ArrowRightCircleIcon from "@/components/icons/blog/arrowRightCircle";
 const Panel = dynamic(() => import("@/app/product/components/panel"), { ssr: false });
+const Product = dynamic(() => import("@/app/components/desktopProduct"),{ssr : false});
 
 
 type CategoryType = {
@@ -31,11 +32,9 @@ const categories: CategoryType[] = [
     },
 ]
 
-const ProductsDesktop = () => {
+const ProductsDesktop : FC<{ products ?: ProductType[] }> = ({ products }) => {
 
     const [currentCategory, setCurrentCategory] = useState<CategoryType>();
-
-    const products = [1, 2, 3, 4, 5, 6];
 
     useEffect(() => {
         setCurrentCategory(categories[0])
@@ -64,9 +63,17 @@ const ProductsDesktop = () => {
                     </div>
                     <div className="grid grid-cols-3 gap-4 my-6">
                         {
-                            products.map((product, index) => {
+                            products?.map((product) => {
                                 return (
-                                    <Product index={index} key={index} />
+                                    <Product
+                                        image={product.index_image?.url}
+                                        key={product.id}
+                                        price={product.price}
+                                        score={product.rating}
+                                        slug={product.slug}
+                                        summary={product.slug}
+                                        title={product.title}
+                                    />
                                 )
                             })
                         }

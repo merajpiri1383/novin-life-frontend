@@ -5,12 +5,11 @@ import { FC, useEffect, useRef, useState } from "react";
 import Logo from '@/public/logo.svg';
 import HomeIconFull from "@/icons/footer/home";
 import HomeIcon from "@/icons/cart/home";
-import NoteAddIcon from "@/icons/footer/noteAdd";
 import UserIcon from "@/icons/header/user";
 import UserFullIcon from "@/icons/footer/userFull";
 import ShopingCartFullIcon from "@/icons/footer/shopingCartFull";
-import NoteAddFullIcon from "@/icons/footer/noteAddFull";
 import ArrowDownCircleIcon from "@/icons/footer/arrowDownCircle";
+import CategoryIcon from "@/icons/footer/category";
 import { GroupLinkType } from ".";
 import ShopingCardIcon from "@/icons/about/shopingCard";
 import Link from "next/link";
@@ -155,16 +154,12 @@ const FooterMobile: FC<FooterType> = ({ license, quickAccess, socialMedia, text 
                         </div>
                         <p className="text-[#EDEDED] text-[12px] font-regular">خانه</p>
                     </Link>
-                    <div>
+                    <Link href={"/product"}>
                         <div className="size-[24px] mx-auto mb-2">
-                            {
-                                currentPath === "/me" ?
-                                    <NoteAddFullIcon color="white" /> :
-                                    <NoteAddIcon color="white" />
-                            }
+                            <CategoryIcon color="white" />
                         </div>
-                        <p className="text-[#EDEDED] text-[12px] font-regular">آپشنال</p>
-                    </div>
+                        <p className="text-[#EDEDED] text-[12px] font-regular">محصولات</p>
+                    </Link>
                     <Link href={"/cart"}>
                         <div className="size-[24px] mx-auto mb-2">
                             {

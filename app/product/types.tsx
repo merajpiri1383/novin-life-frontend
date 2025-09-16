@@ -67,3 +67,53 @@ export interface RelatedProductType {
         thumb_url: string
     }
 }
+
+
+export interface ProductType {
+    category ?: {
+        id : number,
+        name : string,
+        slug : string,
+    },
+    comments_count ?: number,
+    created_at ?: string,
+    dislikes_count ?: number,
+    id : string,
+    images : {
+        id : number,
+        thumb_url : string,
+        url : string,
+    }[],
+    index_image ?: {
+        id : number,
+        thumb_url : string,
+        url : string,
+    },
+    likes_count ?: number,
+    price ?: number,
+    quantity ?: number,
+    rating ?: number,
+    slug ?: string,
+    status ?: string,
+    summary ?: string,
+    title ?: string,
+    unit ?: string,
+    views_count ?: number,
+}
+
+export interface PaginationType {
+    current_page ?: number,
+    from ?: number,
+    has_more_pages : boolean,
+    last_page ?: number,
+    per_page ?: number,
+    to ?: number,
+    total ?: number,
+}
+
+
+export type ProductsFilterResponseType = {
+    pagination : PaginationType,
+    products : ProductType[],
+    status : boolean,
+}

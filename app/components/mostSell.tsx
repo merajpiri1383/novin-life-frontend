@@ -7,7 +7,7 @@ import { ProductMainType } from "@/app/types";
 const MostSell: FC<{ data: ProductMainType[] }> = ({ data }) => {
 
     return (
-        <div className="m-[80px] [direction:rtl]">
+        <div className="m-[80px] [direction:rtl]" id="most-sell">
             <div className="flex items-center justify-between">
                 <div className="flex items-center justify-center gap-[8px]">
                     <div className="size-[40px]">

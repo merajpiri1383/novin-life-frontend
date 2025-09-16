@@ -4,21 +4,23 @@ import SortIcon from "@/components/icons/product/sort";
 import SettingsIcon from "@/components/icons/product/settings";
 import ArrowRight2Icon from "@/components/icons/home/arrowRight2";
 import ArrowLeftIcon from "@/components/icons/profile/arrowLeft";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
+import { ProductType } from "@/app/product/types";
+
 
 const ProductMobile = dynamic(() => import("@/app/components/mobileProduct"), { ssr: false });
 const ProductMobileSort = dynamic(() => import("@/app/product/components/productMobileSort"), { ssr: false });
-const ProductMobileFilter = dynamic(() => import("@/app/product/components/productMobileFilter"),{ssr : false});
+const ProductMobileFilter = dynamic(() => import("@/app/product/components/productMobileFilter"), { ssr: false });
 
 
 
-const ProductsMobile = () => {
+const ProductsMobile: FC<{ products?: ProductType[] }> = ({ products }) => {
 
-    const products = [1, 2, 3, 4, 5, 6];
+
     const [showSort, setShowSort] = useState<boolean>(false);
-    const [showFilter,setShowFilter] = useState<boolean>(false);
+    const [showFilter, setShowFilter] = useState<boolean>(false);
 
-    const filterShowHandler = (e : React.MouseEvent) : void => {
+    const filterShowHandler = (e: React.MouseEvent): void => {
         e.stopPropagation();
         setShowFilter(!showFilter);
     }
@@ -43,14 +45,14 @@ const ProductsMobile = () => {
 
             <div className="flex items-center justify-start gap-6 my-4">
                 <div
-                    onClick={(e) => filterShowHandler(e)} 
+                    onClick={(e) => filterShowHandler(e)}
                     className="flex items-center justify-center gap-2 cursor-pointer">
                     <div className="size-[16px]">
                         <SettingsIcon />
                     </div>
                     <p className="text-[#3D3D3D] font-medium text-[12px]">فیلتر</p>
                 </div>
-                <div className="flex items-center justify-center gap-2 relative cursor-pointer" 
+                <div className="flex items-center justify-center gap-2 relative cursor-pointer"
                     onClick={sortshowHandler}>
                     <div className="size-[16px]">
                         <SortIcon />
@@ -66,9 +68,17 @@ const ProductsMobile = () => {
             }
             <div className="border-t border-[#EDEDED] pt-6 grid grid-cols-2 gap-4">
                 {
-                    products.map((product, index) => {
+                    products?.map((product) => {
                         return (
-                            <ProductMobile key={index} />
+                            <ProductMobile
+                                image={product.index_image?.url}
+                                key={product.id}
+                                price={product.price}
+                                score={product.rating}
+                                slug={product.slug}
+                                summary={product.summary}
+                                title={product.title}
+                            />
                         )
                     })
                 }
