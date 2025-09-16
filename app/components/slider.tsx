@@ -7,8 +7,8 @@ import { Autoplay, Pagination } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import 'swiper/css/pagination';
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import LeftArrowIcon from "@/components/icons/home/leftArrow";
 import RightArrowIcon from "@/components/icons/home/rightArrow";
 import { useQuery } from "@tanstack/react-query";

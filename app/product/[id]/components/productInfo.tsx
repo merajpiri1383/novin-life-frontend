@@ -9,19 +9,20 @@ const Review = () => {
     return (
         <div className="border-[1px] border-[#CBCBCB] rounded-[8px] p-[15px]">
             <div className="flex items-center justify-between">
-                <div className="flex items-start justify-center gap-[21px]">
+                <div className="flex items-start md:justify-center gap-[21px]">
                     <div className="relative size-[80px]">
                         <Image
                             src={UserImage}
                             alt="user image"
                             fill={true}
                             sizes="100%"
+                            className="rounded-full md:border-none border-[2px] border-[#6A7581]"
                             style={{ objectFit: "cover", objectPosition: "center" }}
                         />
                     </div>
-                    <div>
+                    <div className="">
                         <p className="text-[#3D3D3D] font-regular text-[16px] mt-6">رسول</p>
-                        <p className="text-[#3D3D3D] font-regular text-[18px] mt-6">
+                        <p className="text-[#3D3D3D] font-regular text-[18px] mt-6 hidden md:block">
                             بسیار ممنونم از اینکه این کفش خوب رو برامون گذاشتید. خییلییی خفنه</p>
                     </div>
                 </div>
@@ -43,13 +44,15 @@ const Review = () => {
                     </div>
                 </div>
             </div>
+            <p className="md:hidden text-[#3D3D3D] text-[16px] font-regular mt-6">
+                بسیار ممنونم از اینکه این کفش خوب رو برامون گذاشتید. خییلییی خفنه</p>
         </div>
     )
 };
 
 const Form = () => {
     return (
-        <div className="col-span-3">
+        <div className="col-span-9 md:col-span-3">
             <p className="text-[#3D3D3D] font-semibold text-[18px]">نظرت رو برامون بنویس</p>
             <div className="w-full h-[1px] bg-[#D9D9D9] my-4"></div>
             <p className="text-[#868686] font-regular text-[14px]">ایمیل شما نشان داده نمی‌شود.</p>
@@ -94,7 +97,7 @@ const Form = () => {
                 </div>
                 <div className="col-span-1">
                     <div className="px-[32px] py-[8px] border-[2px] border-[#0A3C63] rounded-[8px]">
-                        <p className="text-[#0A3C63] font-medium text-[16px]">ثبت نظر و امتیاز</p>
+                        <p className="text-[#0A3C63] font-medium text-[16px] text-center">ثبت نظر  </p>
                     </div>
                 </div>
             </div>
@@ -106,23 +109,23 @@ const ProductInfo = () => {
     const [productSection, setProductSection] = useState<ProductSectionType>("feature");
 
     return (
-        <div className="my-6">
+        <div className="m-6 md:mx-0 my-6 [direction:rtl]">
             <div className="flex items-center justify-start gap-[16px]">
                 <p className={`px-[10px] py-[6px] rounded-[8px] text-[#0A3C63] font-medium 
-                    text-[24px] cursor-pointer transition duration-400
-                    ${productSection === "feature" && "bg-[#D5E9F8]"}`}
+                    text-[20px] md:text-[24px] cursor-pointer transition duration-400 border-[#D5E9F8]
+                    ${productSection === "feature" ? "bg-[#D5E9F8]" : " border-[2px]"}`}
                     onClick={() => setProductSection("feature")}>
-                    ویژگی های محصول
+                    ویژگی
                 </p>
                 <p className={`px-[10px] py-[6px] rounded-[8px] text-[#0A3C63] font-medium 
-                    text-[24px] cursor-pointer transition duration-400
-                    ${productSection === "description" && "bg-[#D5E9F8]"}`}
+                    text-[20px] md:text-[24px] cursor-pointer transition duration-400 border-[#D5E9F8]
+                    ${productSection === "description" ? "bg-[#D5E9F8]" : " border-[2px]"}`}
                     onClick={() => setProductSection("description")}>
                     توضیحات
                 </p>
                 <p className={`px-[10px] py-[6px] rounded-[8px] text-[#0A3C63] font-medium 
-                    text-[24px] cursor-pointer transition duration-400
-                    ${productSection === "review" && "bg-[#D5E9F8]"}`}
+                    text-[20px] md:text-[24px] cursor-pointer transition duration-400 border-[#D5E9F8]
+                    ${productSection === "review" ? "bg-[#D5E9F8]" : " border-[2px]"}`}
                     onClick={() => setProductSection("review")}>
                     نظرات
                 </p>
@@ -169,7 +172,7 @@ const ProductInfo = () => {
 
             {productSection === "review" && (
                 <div className="grid grid-cols-9 gap-[25px] my-6">
-                    <div className="col-span-6 grid grid-cols-1 gap-[8px]">
+                    <div className="col-span-9 md:col-span-6 grid grid-cols-1 gap-[8px]">
                         <Review />
                         <Review />
                         <Review />
