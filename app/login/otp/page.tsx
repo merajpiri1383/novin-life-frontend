@@ -5,26 +5,42 @@ import { useRouter } from "next/navigation";
 import { Slide } from "react-awesome-reveal";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import OtpInput from 'react-otp-input';
+import { AxiosError } from "axios";
 import Cookies from "next-cookies-universal";
 import ArrowRightIcon from "@/components/icons/login/arrowRight";
 import useUserStore from "@/lib/store/user";
-import OtpInput from 'react-otp-input';
 import { VerifyOtp } from "@/app/api/auth";
 
 
-
+interface ErrorType {
+    message: string,
+    code: string[],
+}
 
 const Page = () => {
 
     const [otp, setOtp] = useState<string | null>(null);
-    const { user , setUser } = useUserStore();
+    const { user, setUser } = useUserStore();
     const router = useRouter();
     const mutation = useMutation({
         mutationFn: VerifyOtp,
-    })
+        onError: (error: AxiosError<ErrorType>) => {
+            const e = error?.response?.data;
+            if (e?.message) {
+                toast.error(e.message);
+            }
+        }
+    });
 
-    const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    useEffect(() => {
+        if (otp?.length === 5) {
+            submitHandler()
+        }
+    }, [otp]);
+
+    const submitHandler = (e?: React.FormEvent<HTMLFormElement>) => {
+        e?.preventDefault();
         if (otp && user?.mobile) {
             mutation.mutate({
                 code: parseInt(otp),
@@ -43,15 +59,15 @@ const Page = () => {
 
         if (mutation.isSuccess) {
             setUser({
-                avatar : mutation.data?.customer?.avatar,
-                birthdate : mutation.data?.customer?.birthdate,
-                email : mutation.data?.customer?.email,
-                family : mutation.data?.customer?.family,
-                id : mutation.data?.customer?.id , 
-                name : mutation.data?.customer?.name
+                avatar: mutation.data?.customer?.avatar,
+                birthdate: mutation.data?.customer?.birthdate,
+                email: mutation.data?.customer?.email,
+                family: mutation.data?.customer?.family,
+                id: mutation.data?.customer?.id,
+                name: mutation.data?.customer?.name
             });
             (async () => {
-                (await Cookies("client")).set("access_token",mutation.data?.access_token);
+                (await Cookies("client")).set("access_token", mutation.data?.access_token);
             })();
             router.push("/");
             toast.success("loged in Successfully")
@@ -70,6 +86,7 @@ const Page = () => {
                         onChange={setOtp}
                         numInputs={5}
                         inputType="number"
+                        shouldAutoFocus={true}
                         inputStyle={{
                             border: "1px solid #CBCBCB",
                             width: "44px",

@@ -3,7 +3,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 
-type userType = {
+export type userType = {
     mobile ?: string | null,
     id ?: number | null,
     name ?: string | null,
@@ -17,6 +17,8 @@ interface userStoreType {
     user : userType | null , 
     setUser : (user : userType) => void,
     clearUser : () => void,
+    isHydrated : boolean,
+    setHydrate : (v : boolean) => void,
 }
 
 const useUserStore = create<userStoreType>()(
@@ -24,7 +26,9 @@ const useUserStore = create<userStoreType>()(
         (set) => ({
             user : null,
             setUser : (user) => set({user}),
-            clearUser : () => set({user : null})
+            clearUser : () => set({user : null}),
+            isHydrated : false,
+            setHydrate : (v) => set({ isHydrated : v }),
         }),
         {
             name : "user-store"

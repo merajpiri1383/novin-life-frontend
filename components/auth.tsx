@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { FC, useEffect } from "react";
 import { CompanyType } from "@/components/types";
 import { useCompanyStore } from "@/lib/store/company";
+import useUserStore from "@/lib/store/user";
 
 
 
@@ -15,6 +16,7 @@ const Auth: FC<{ children: React.ReactNode }> = ({ children }) => {
     });
 
     const { setFooter, setHeader, setTheme } = useCompanyStore();
+    const { setHydrate } = useUserStore();
 
     useEffect(() => {
 
@@ -34,7 +36,9 @@ const Auth: FC<{ children: React.ReactNode }> = ({ children }) => {
             if (data?.output.theme) {
                 setTheme(data.output.theme);
             }
-        } catch {}
+        } catch {};
+
+        setHydrate(true);
     }, [data]); // Remove setFooter, setHeader, setTheme from dependencies
 
     return (

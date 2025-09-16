@@ -8,6 +8,7 @@ import { CartType } from "@/app/cart/types";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import useUserStore from "@/lib/store/user";
 
 const Desktop = dynamic(() => import("@/app/cart/components/desktop"), { ssr: false });
 const Mobile = dynamic(() => import("@/app/cart/components/mobile"), { ssr: false });
@@ -22,12 +23,20 @@ const Page = () => {
         queryFn: GetCartIndex,
     });
 
+    const user = useUserStore((state) => state.user);
+    const isHydrated = useUserStore((state) => state.isHydrated);
+
     useEffect(() => {
+        if (isHydrated && !user) {
+            router.push("/login");
+            toast.info("وارد حساب کاربری خود شوید")
+        }
+
         if (query.error && query.error.response?.status === 401) {
             toast.error("وارد حساب کاربری خود شوید");
             router.push("/login");
         }
-    }, [query,router]);
+    }, [query,user]);
 
     return (
         <>

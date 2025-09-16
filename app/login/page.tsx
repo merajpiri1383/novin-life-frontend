@@ -74,9 +74,10 @@ const Page = () => {
                             <input
                                 type={inputType}
                                 required
+                                autoFocus={true}
                                 onChange={(e) => setInput(e.target.value)}
                                 className="border-[#ADADAD] border-[1px] rounded-[8px] w-full my-1
-                        text-[#ADADAD] p-2 text-[14px] outline-none"
+                                text-[#ADADAD] p-2 text-[14px] outline-none"
                                 placeholder="*********09 یا Example@gmail.com"
                             />
                         </div>
